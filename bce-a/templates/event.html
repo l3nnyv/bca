@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title%} Event {% endblock %}
+{% block styles%} <link rel="stylesheet" href="{{url_for('static', filename='event.css')}}"> {% endblock %}
+
+{% block content %}
+
+<section class="hero-section">
+    {% for ticket in event %}
+        <img class="hero-img" src="{{url_for('static', filename='event-assets/' ~ ticket['event_specific_img_path'])}}" alt="">
+    {% endfor %}
+</section>
+<section class="tickets">
+    <ul class="ticket-list">
+        {% for ticket in event %}
+            <li>
+                <div class="date-square">
+                    <h2>{{ticket["event_specific_start"].strftime('%b')}}</h2>
+                    <h2>{{ticket["event_specific_start"].strftime('%d')}}</h2>
+                </div>
+                <div>
+                    <p>{{ticket["event_specific_start"].strftime('%a')}} · {{ticket["event_specific_start"].strftime('%H:%M')}}</p>
+                    <p>{{ticket["venue_name"]}}</p>
+                </div>
+                <a href="{{url_for('checkout')}}">Get Ticket</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

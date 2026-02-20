@@ -1,0 +1,24 @@
+<form id="venues-form" action="#" method="post">
+    <input type="text" name="venue_name" placeholder="Name">
+    <input type="number" name="venue_capacity" placeholder="Capacity">
+    <input type="text" name="venue_postcode" placeholder="Postcode">
+    <input type="text" name="venue_address" placeholder="Addess">
+    <div id="venue-img-container">
+        <input type="text" name="venue_img_path[]" placeholder="venue image path">
+        <input type="text" name="venue_img_alt[]" placeholder="venue image alt">
+    </div>
+    <button type="button" onclick="addImageField()">+ Add Another Image</button>
+    <input type="submit" name="submit">
+</form>
+
+<script>
+    function addImageField(){
+        const venueImgContainer = document.getElementById('venue-img-container')
+        const imageField = document.createElement('div');
+        imageField.innerHTML = `
+            <input type="text" name="venue_img_path[]" placeholder="venue image path">
+            <input type="text" name="venue_img_alt[]" placeholder="venue image alt">
+        `;
+        venueImgContainer.appendChild(imageField);
+    }
+</script>

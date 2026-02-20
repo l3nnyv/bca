@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title%} Home {% endblock %}
+{% block styles %}
+ <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
+ {% endblock %}
+
+{% block content %}
+        {% if error_msg %}
+            {{error_msg}}
+        
+        {% else %}
+            <section class="events-grid">
+                {% for event in events %}
+                    <a href="{{url_for('event', event_id = event['event_id'])}}" class="events-grid-item">
+                        <img class="event-cover-img" src="{{url_for('static', filename='event-assets/' ~ event['event_specific_img_path'])}}" alt="">  
+                        <h1>{{event['event_name']}}</h1>
+                        <p>{{event['event_specific_start']}}</p>
+                        <p>£{{event['event_price']}}</p>
+                    </a>
+                {% endfor %}
+            </section>
+        {% endif %}
+{% endblock %}

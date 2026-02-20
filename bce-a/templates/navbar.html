@@ -1,0 +1,74 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+</head>
+<header>
+    <nav class="navbar">
+        <section class="navigation-section-outer">
+            <div class="navigation-section-inner">
+                <div class="burger-menu">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </div>
+                <a href="{{url_for('home')}}">
+                    <div class="logo-container">
+                        <img class="logo-img" src="{{ url_for('static', filename='assets/Ticketmaster-Logo.png') }}" alt="">
+                    </div>
+                </a>
+                <div class="links-container">
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 1)}}">Music</a>
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 2)}}">Sport</a>
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 3)}}">Exhibitions</a>
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 4)}}">Workshops</a>
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 5)}}">Theatre</a>
+                    <a class="no-wrap nav-a" href="{{url_for('category', category = 8)}}">Courses</a>
+                    <a class="no-wrap nav-a more" href="">more</a>
+                </div>
+                <div class="no-wrap sign-container">
+                    {% if session['logged_in'] %}
+                        <a href="{{url_for('logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    {% else %}
+                        <a href="{{url_for('login')}}"><i class="fa-solid fa-user"></i></a>
+                        <a class="sign-inup" href="{{url_for('login')}}">Sign In/Register</a>
+                    {% endif %}
+                </div>
+            </div>  
+        </section>
+
+        <section class="search-section-outer">
+            <form class="search-section-inner" action="#" method="POST">
+                <div>
+                    <i class="fa-solid fa-location-dot"></i> 
+                    <div>
+                        <p>LOCATION</p>
+                        <p class="no-wrap">United Kingdom</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="nav-form">
+                        <input type="date" name="from_date">
+                    </div>
+                </div>
+                <div>
+                    <div class="nav-form">
+                        <input type="date" name="to_date">
+                    </div>
+                </div>
+                    <!-- <i class="fa-solid fa-calendar-days"></i>
+                    <div>
+                        <p>DATES</p>
+                        <p class="no-wrap">All Dates</p>
+                    </div> -->
+                <div>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <div>
+                        <p>SEARCH</p>
+                        <p class="no-wrap">Artist, Event or Venue</p>
+                    </div>
+                    <input class="search-btn btn-font" type="submit">
+                </div>
+            </form>
+        </section>
+    </nav>
+</header>
+
+<!--style calendars-->
